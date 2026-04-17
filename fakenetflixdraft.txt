@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MovieFlix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white">
+
+<!-- Navbar -->
+<header class="p-4 bg-black/80 fixed w-full z-50">
+  <h1 class="text-red-600 text-2xl font-bold">MovieFlix</h1>
+</header>
+
+<!-- Hero -->
+<section id="hero" class="h-[60vh] bg-cover bg-center flex items-end p-8 mt-12">
+  <div>
+    <h2 id="hero-title" class="text-4xl font-bold mb-2"></h2>
+    <p id="hero-desc" class="max-w-lg text-gray-300"></p>
+  </div>
+</section>
+
+<!-- Rows -->
+<main id="rows" class="p-4 space-y-8"></main>
+
+<script>
+const API_KEY = "df59d294eccccdaa6fdeb2ae44143b4f";
+const BASE_URL = "https://api.themoviedb.org/3";
+const IMG = "https://image.tmdb.org/t/p/w500";
+
+const categories = [
+  { title: "Trending", url: "/trending/movie/week" },
+  { title: "Top Rated", url: "/movie/top_rated" },
+  { title: "Action", url: "/discover/movie?with_genres=28" },
+  { title: "Comedy", url: "/discover/movie?with_genres=35" }
+];
+
+// ✅ FIXED fetch function
+async function fetchMovies(endpoint) {
+  try {
+    const separator = endpoint.includes("?") ? "&" : "?";
+    const url = `${BASE_URL}${endpoint}${separator}api_key=${API_KEY}`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      console.error("API ERROR:", res.status, await res.text());
+      return [];
+    }
+
+    const data = await res.json();
+    return data.results || [];
+  } catch (err) {
+    console.error("FETCH FAILED:", err);
+    return [];
+  }
+}
+
+function createRow(title, movies) {
+  const row = document.createElement("div");
+
+  row.innerHTML = `
+    <h2 class="text-xl font-semibold mb-2">${title}</h2>
+    <div class="flex space-x-4 overflow-x-auto">
+      ${movies.map(m => `
+        <div class="min-w-[150px] hover:scale-105 transition">
+          <img 
+            src="${m.poster_path ? IMG + m.poster_path : ''}" 
+            class="rounded-lg bg-gray-800 h-[225px] object-cover"
+          />
+          <p class="text-sm mt-1">${m.title || "No Title"}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  return row;
+}
+
+async function loadRows() {
+  const container = document.getElementById("rows");
+
+  for (let cat of categories) {
+    const movies = await fetchMovies(cat.url);
+    container.appendChild(createRow(cat.title, movies));
+  }
+}
+
+async function loadHero() {
+  const movies = await fetchMovies("/trending/movie/week");
+
+  if (!movies.length) return;
+
+  const movie = movies[0];
+
+  document.getElementById("hero").style.backgroundImage =
+    `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+
+  document.getElementById("hero-title").innerText = movie.title;
+  document.getElementById("hero-desc").innerText = movie.overview;
+}
+
+// 🚀 Run
+loadHero();
+loadRows();
+</script>
+
+</body>
+</html>
