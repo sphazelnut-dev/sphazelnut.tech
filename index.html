@@ -7,35 +7,57 @@
   <title>Hazel</title>
 
   <style>
+    body {
+      margin: 0;
+      color: #f5c2e7;
+    }
     #particles-js {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: 0;
-      top: 0;
-      left: 0;
     }
-    .content {
+    .site {
       position: relative;
       z-index: 1;
+      padding: 24px;
+    }
+    #click {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111827;
+      z-index: 10;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 1;
+      color: #f5c2e7;
     }
   </style>
 </head>
 
-<body class="bg-gray-900 text-gray-100 p-6">
+
+  <!--page setup-->
+  <body class="bg-gray-900">
+  <div id="click">click to enter</div>
   <div id="particles-js"></div>
-  <audio autoplay loop>
-    <source src="background.mp3" type="audio/mpeg">
+  <audio id="bg-audio" loop>
+  <source src="background.mp3" type="audio/mpeg">
   </audio>
-  <div class="bio">
-    <h1 class="text-3xl font-bold mb-2">sphazelnut</h1>
+
+  <!-- BIO STARTS HERE -->
+  <div class="site">
+    <h1 class="text-3xl font-bold mb-2">hi, im hazel!</h1>
 
     <p class="mb-1">hi this is my bio</p>
     <p class="mb-1">everyone talks about not skidding their bio</p>
     <p class="mb-1">i hope no one says i skidded this 😭🙏</p>
     <p class="mb-3">i like living (most of the time) and writing short stories</p>
 
-    <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">skills</h2>
+    <h2 class="text-xl font-semibold mt-4 mb-2 border-b inline-block">
+      skills
+    </h2>
 
     <p class="mb-1">(virtually none)</p>
     <p class="mb-1">html - 1%</p>
@@ -44,16 +66,30 @@
     <p class="mb-1">py - 0%</p>
     <p class="mb-1">cpp - 0%</p>
 
-    <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">achivements</h2>
-    <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">btw im new to gd don't judge</h3>
-    <p class="mb-1">back on track (if i have a 95% do i count it as complete?)</p>
-    <p class="mb-1">idc im moving on to poltergiest</p>
+    <h2 class="text-xl font-semibold mt-4 mb-2 border-b inline-block">
+      achivements
+    </h2>
 
-    <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">mc</h3>
+    <h3 class="text-xl font-semibold mt-4 mb-2 border-b inline-block">
+      btw im new to gd don't judge
+    </h3>
+
+    <p class="mb-1">
+      back on track (if i have a 95% do i count it as complete?)
+    </p>
+    <p class="mb-1">
+      idc im moving on to polargiest
+    </p>
+
+    <h3 class="text-xl font-semibold mt-4 mb-2 border-b inline-block">
+      mc
+    </h3>
+
     <p class="mb-1">speedran the game in 46m</p>
   </div>
-
+<!--BIO ENDS HERE-->
   <script>
+    //particles.js
     particlesJS("particles-js", {
       particles: {
         number: {
@@ -80,7 +116,7 @@
           distance: 120,
           color: "#cb78fc",
           opacity: 0.2,
-          width: 1
+          width: 2
         }
       },
       interactivity: {
@@ -91,6 +127,22 @@
         }
       }
     });
+
+
+    //clickthrough page
+    
+    const enter = document.getElementById("click");
+    const audio = document.getElementById("bg-audio");
+
+    //tune this later
+    audio.volume = 0.2;
+
+    click.onclick = () => {
+      // play audio
+      audio.play().catch(() => {});
+      // remove clickthrough page
+      click.remove();
+    };
   </script>
 
 </body>
