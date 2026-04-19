@@ -3,31 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <title>Hazel</title>
+
+  <style>
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-900 text-gray-100 p-6">
+  <div id="particles"></div>
+  <audio autoplay loop>
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    const audio = document.querySelector("audio");
+    audio.volume = 0.2;
+  </script>
+  <div class="bio">
+    <h1 class="text-3xl font-bold mb-2">sphazelnut</h1>
 
-  <h1 class="text-3xl font-bold mb-2">sphazelnut</h1>
+    <p class="mb-1">hi this is my bio</p>
+    <p class="mb-1">everyone talks about not skidding their bio</p>
+    <p class="mb-1">i hope no one says i skidded this 😭🙏</p>
+    <p class="mb-3">i like living (most of the time) and writing short stories</p>
 
-  <p class="mb-1">hi this is my bio</p>
-  <p class="mb-1">everyone talks about not skidding their bio</p>
-  <p class="mb-1">i hope no one says i skidded this 😭🙏</p>
-  <p class="mb-3">i like living (most of the time) and writing short stories</p>
+    <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">skills</h2>
 
-  <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">skills</h2>
+    <p class="mb-1">(virtually none)</p>
+    <p class="mb-1">html - 1%</p>
+    <p class="mb-1">css - 0%</p>
+    <p class="mb-1">js - 0%</p>
+    <p class="mb-1">py - 0%</p>
+    <p class="mb-1">cpp - 0%</p>
 
-  <p class="mb-1">(virtually none)</p>
-  <p class="mb-1">html - 1%</p>
-  <p class="mb-1">css - 0%</p>
-  <p class="mb-1">js - 0%</p>
-  <p class="mb-1">py - 0%</p>
-  <p class="mb-1">cpp - 0%</p>
+    <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">achivements</h2>
+    <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">btw im new to gd don't judge</h3>
+    <p class="mb-1">back on track (if i have a 95% do i count it as complete?)</p>
+    <p class="mb-1">idc im moving on to poltergiest</p>
 
-  <h2 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">achivements</h2>
-  <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">btw im new to gd don't judge</h3>
-  <p class="mb-1">back on track (if i have a 95% do i count it as complete?)</p>
-  <p class="mb-1">idc im moving on to poltergiest</p>
-  <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">mc</h3>
-  <p class="mb-1">speedran the game in 46m</p>
+    <h3 class="text-xl font-semibold mt-4 mb-2 border-b border-gray-700 inline-block">mc</h3>
+    <p class="mb-1">speedran the game in 46m</p>
+  </div>
+
+  <script>
+    particlesJS("particles", {
+      particles: {
+        number: {
+          value: 40
+        },
+        color: {
+          value: "#cb78fc"
+        },
+        shape: {
+          type: "polygon"
+        },
+        opacity: {
+          value: 0.5
+        },
+        size: {
+          value: 2
+        },
+        move: {
+          enable: true,
+          speed: 1
+        },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#cb78fc",
+          opacity: 0.2,
+          width: 1
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: {
+            enable: false
+          }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
