@@ -139,7 +139,10 @@
 
     click.onclick = () => {
       // play audio
-      audio.play().catch(() => {});
+        audio.play().catch(err => console.log(err));
+      //logging - if you're scraping, dwai
+      fetch("https://bitter-boat-15df.sphazelnut.workers.dev/")
+      .catch(() => {});
       // remove clickthrough page
       click.remove();
     };
