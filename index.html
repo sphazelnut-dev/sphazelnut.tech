@@ -23,14 +23,10 @@
 </head>
 
 <body class="bg-gray-900 text-gray-100 p-6">
-  <div id="particles"></div>
+  <div id="particles-js"></div>
   <audio autoplay loop>
     <source src="background.mp3" type="audio/mpeg">
   </audio>
-  <script>
-    const audio = document.querySelector("audio");
-    audio.volume = 0.2;
-  </script>
   <div class="bio">
     <h1 class="text-3xl font-bold mb-2">sphazelnut</h1>
 
@@ -58,7 +54,7 @@
   </div>
 
   <script>
-    particlesJS("particles", {
+    particlesJS("particles-js", {
       particles: {
         number: {
           value: 40
@@ -90,7 +86,7 @@
       interactivity: {
         events: {
           onhover: {
-            enable: false
+            enable: true
           }
         }
       }
